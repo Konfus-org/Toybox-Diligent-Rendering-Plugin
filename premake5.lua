@@ -1,4 +1,4 @@
-project "The Forge"
+project "The Forge Rendering"
     kind "SharedLib"
     language "C++"
     cppdialect "C++20"
@@ -23,3 +23,4 @@ project "The Forge"
     }
 
     ToyboxPluginConfigs()
+    RegisterPlugin("The Forge Rendering")
