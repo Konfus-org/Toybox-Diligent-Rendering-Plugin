@@ -1,0 +1,3 @@
+[submodule "3rd Party/The-Forge"]
+	path = 3rd Party/The-Forge
+	url = https://github.com/Konfus-org/The-Forge.git
