@@ -1,14 +1,13 @@
 #pragma once
 #include <Tbx/Core/Rendering/IRenderer.h>
-#include <OGRE-Next/OgreRoot.h>
 
-namespace OGRERendering
+namespace DiligentRendering
 {
-    class OGRERenderer : public Tbx::IRenderer
+    class DiligentRenderer : public Tbx::IRenderer
     {
     public:
-        OGRERenderer();
-        ~OGRERenderer() override = default;
+        DiligentRenderer();
+        ~DiligentRenderer() override = default;
 
         void ProcessData(const Tbx::RenderData& data) final;
 
@@ -35,10 +34,6 @@ namespace OGRERendering
         Tbx::Size GetViewportSize() const { return _viewportSize; }
 
     private:
-        Ogre::Root* _ogreRoot = nullptr;
-        Ogre::Window* _ogreRenderSurface = nullptr;
-        Ogre::SceneManager* _ogreSceneManager = nullptr;
-
         Tbx::NativeHandle _renderSurface = -1;
         Tbx::Size _resolution = {0, 0};
         Tbx::Vector2I _viewportPos = { 0, 0 };

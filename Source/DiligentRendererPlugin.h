@@ -1,5 +1,5 @@
 #pragma once
-#include "OGRERenderer.h"
+#include "DiligentRenderer.h"
 #include <Tbx/Core/Rendering/IRenderer.h>
 #include <Tbx/Core/Plugins/RegisterPlugin.h>
 #include <Tbx/Runtime/Events/RenderEvents.h>
@@ -7,13 +7,13 @@
 #include <Tbx/Runtime/Events/ApplicationEvents.h>
 #include <Tbx/Runtime/App/GraphicsSettings.h>
 
-namespace OGRERendering
+namespace DiligentRendering
 {
-    class OGRERendererPlugin : public Tbx::Plugin, public OGRERenderer
+    class DiligentRendererPlugin : public Tbx::Plugin, public DiligentRenderer
     {
     public:
-        OGRERendererPlugin() = default;
-        ~OGRERendererPlugin() final = default;
+        DiligentRendererPlugin() = default;
+        ~DiligentRendererPlugin() final = default;
 
         void OnLoad() override;
         void OnUnload() override;
@@ -42,4 +42,4 @@ namespace OGRERendering
     };
 }
 
-TBX_REGISTER_PLUGIN(OGRERendering::OGRERendererPlugin);
+TBX_REGISTER_PLUGIN(DiligentRendering::DiligentRendererPlugin);

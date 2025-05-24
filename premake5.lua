@@ -1,4 +1,4 @@
-project "The Forge Rendering"
+project "Diligent Renderer"
     kind "SharedLib"
     language "C++"
     cppdialect "C++20"
@@ -11,16 +11,31 @@ project "The Forge Rendering"
 
     files
     {
-        "./**.h",
-        "./**.c",
-        "./**.hpp",
-        "./**.cpp"
+        "./Source/**.h",
+        "./Source/**.c",
+        "./Source/**.cc",
+        "./Source/**.hpp",
+        "./Source/**.cpp",
+        "./Include/**.h",
+        "./Include/**.c",
+        "./Include/**.cc",
+        "./Include/**.hpp",
+        "./Include/**.cpp",
+        "./**.plugin",
+        "./**.md",
+        "./*.lua"
     }
 
     includedirs
     {
-        "./Source"
+        "./Source",
+        "%{Using.DiligentEngine}"
+    }
+
+    links
+    {
+        "Diligent Engine"
     }
 
     ToyboxPluginConfigs()
-    RegisterPlugin("The Forge Rendering")
+    RegisterPlugin("Diligent Renderer")

@@ -1,10 +1,10 @@
-#include "OGRERendererPlugin.h"
+#include "DiligentRendererPlugin.h"
 #include <Tbx/Core/Events/EventCoordinator.h>
 #include <Tbx/Runtime/Windowing/WindowManager.h>
 
-namespace OGRERendering
+namespace DiligentRendering
 {
-    void OGRERendererPlugin::OnLoad()
+    void DiligentRendererPlugin::OnLoad()
     {
         _windowFocusChangedEventId = 
             Tbx::EventCoordinator::Subscribe<Tbx::WindowFocusChangedEvent>(TBX_BIND_FN(OnWindowFocusChanged));
@@ -22,7 +22,7 @@ namespace OGRERendering
             Tbx::EventCoordinator::Subscribe<Tbx::FlushRendererRequest>(TBX_BIND_FN(OnFlushRequest));
     }
 
-    void OGRERendererPlugin::OnUnload()
+    void DiligentRendererPlugin::OnUnload()
     {
         Tbx::EventCoordinator::Unsubscribe<Tbx::WindowFocusChangedEvent>(_windowFocusChangedEventId);
         Tbx::EventCoordinator::Unsubscribe<Tbx::WindowResizedEvent>(_windowResizedEventId);
@@ -36,7 +36,7 @@ namespace OGRERendering
         Flush();
     }
 
-    void OGRERendererPlugin::OnWindowFocusChanged(const Tbx::WindowFocusChangedEvent& e)
+    void DiligentRendererPlugin::OnWindowFocusChanged(const Tbx::WindowFocusChangedEvent& e)
     {
         if (!e.IsFocused()) return;
 
@@ -44,7 +44,7 @@ namespace OGRERendering
         SetViewport(Tbx::WindowManager::GetWindow(e.GetWindowId()).lock()->GetSize());
     }
 
-    void OGRERendererPlugin::OnWindowResized(const Tbx::WindowResizedEvent& e)
+    void DiligentRendererPlugin::OnWindowResized(const Tbx::WindowResizedEvent& e)
     {
         std::weak_ptr<Tbx::IWindow> windowThatWasResized = Tbx::WindowManager::GetWindow(e.GetWindowId());
         
@@ -62,7 +62,7 @@ namespace OGRERendering
         SetVSyncEnabled(_settings.VSyncEnabled);
     }
 
-    void OGRERendererPlugin::OnGraphicsSettingsChanged(const Tbx::AppGraphicsSettingsChangedEvent& e)
+    void DiligentRendererPlugin::OnGraphicsSettingsChanged(const Tbx::AppGraphicsSettingsChangedEvent& e)
     {
         const auto& settings = e.GetNewSettings();
 
@@ -72,7 +72,7 @@ namespace OGRERendering
         SetResolution(settings.Resolution);
     }
 
-    void OGRERendererPlugin::OnRenderFrameRequest(Tbx::RenderFrameRequest& e)
+    void DiligentRendererPlugin::OnRenderFrameRequest(Tbx::RenderFrameRequest& e)
     {
         Flush();
         Clear(_clearColor);
@@ -93,13 +93,13 @@ namespace OGRERendering
         e.IsHandled = true;
     }
 
-    void OGRERendererPlugin::OnClearScreenRequest(Tbx::ClearScreenRequest& e)
+    void DiligentRendererPlugin::OnClearScreenRequest(Tbx::ClearScreenRequest& e)
     {
         Clear(_clearColor);
         e.IsHandled = true;
     }
 
-    void OGRERendererPlugin::OnFlushRequest(Tbx::FlushRendererRequest& e)
+    void DiligentRendererPlugin::OnFlushRequest(Tbx::FlushRendererRequest& e)
     {
         Flush();
         e.IsHandled = true;
