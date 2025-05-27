@@ -34,7 +34,7 @@ project "Diligent Renderer"
 
     links
     {
-        "Diligent Engine"
+        "DiligentFX"
     }
 
     ToyboxPluginConfigs()
