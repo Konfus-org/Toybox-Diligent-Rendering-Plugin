@@ -4,8 +4,6 @@ project "Diligent Renderer"
     cppdialect "C++20"
     staticruntime "Off"
 
-    RegisterDynamicPlugin("Diligent Renderer")
-
     files
     {
         "./**.hpp",
@@ -20,8 +18,11 @@ project "Diligent Renderer"
     includedirs
     {
         "./Source",
-
+        _MAIN_SCRIPT_DIR .. "/Dependencies/DiligentEngine"
     }
     links
     {
+        "DiligentFX"
     }
+
+    RegisterDynamicPlugin("Diligent Renderer")
